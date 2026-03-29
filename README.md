@@ -1,67 +1,59 @@
-# Claude Skills
+# Spec-to-Ship
 
-A collection of custom skills for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — Anthropic's agentic coding tool. Each skill extends Claude's capabilities with specialized workflows, domain expertise, and automation patterns.
+A product development pipeline for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — from idea to PRD to spec to shipped product. These skills work together to front-load all thinking before writing code, enabling one-shot implementation of large features and small products.
 
-## What Are Claude Skills?
-
-Claude Skills are reusable instruction sets (`.md` files) that give Claude Code specialized abilities — from orchestrating Notion AI to building multi-agent teams. Drop a skill into your `~/.claude/skills/` directory and Claude gains a new capability you can invoke by name.
-
-For the full skill development framework, tooling, and builder infrastructure, see the **[Skill Ecosystem](https://github.com/mrtblount/skill-ecosystem)** repo.
-
-## Repository Structure
+## The Pipeline
 
 ```
-claude-skills/
-├── README.md
-├── LICENSE
-├── notion-ai-orchestrator/
-│   ├── README.md
-│   └── SKILL.md
-├── prd-builder/
-│   ├── README.md
-│   ├── SKILL.md
-│   ├── references/
-│   │   └── prd-template.md
-│   └── sub-skills/
-│       ├── discovery/SKILL.md
-│       ├── researcher/SKILL.md
-│       ├── generator/SKILL.md
-│       └── reviewer/SKILL.md
-├── spec-driven-dev/
-│   ├── README.md
-│   ├── SKILL.md
-│   ├── references/
-│   │   ├── plan-template.md
-│   │   ├── spec-template.md
-│   │   ├── tasks-template.md
-│   │   └── validation-checklist.md
-│   └── sub-skills/
-│       ├── architect/SKILL.md
-│       ├── decomposer/SKILL.md
-│       ├── retrofit/SKILL.md
-│       ├── specifier/SKILL.md
-│       ├── sync/SKILL.md
-│       └── toolchain/SKILL.md
-└── (more skills coming)
+Idea  ->  PRD  ->  Spec  ->  Plan  ->  Tasks  ->  Ship
+         (prd-     (spec-driven-dev)
+         builder)
 ```
+
+**PRD Builder** captures what you're building and why — structured discovery, market research, and a comprehensive product requirements document.
+
+**Spec-Driven Development** takes those requirements and turns them into technical specs (SPEC.md, PLAN.md, TASKS.md) that Claude can execute in one shot.
+
+Together, they eliminate the back-and-forth that kills momentum when building with AI.
 
 ## Skills
 
-| Skill | Description |
-|-------|-------------|
-| [prd-builder](./prd-builder/) | AI-native PRD builder — structured discovery interviews, market research, generation, and review. Produces comprehensive Product Requirements Documents for new or existing products. |
-| [notion-ai-orchestrator](./notion-ai-orchestrator/) | Orchestrate Notion AI through the Claude Chrome Extension — create databases, search content, modify pages, and set up automations by delegating to Notion's built-in AI agent. |
-| [spec-driven-dev](./spec-driven-dev/) | Spec-Driven Development — front-loads all thinking into structured specs (SPEC.md, PLAN.md, TASKS.md) before writing code, enabling one-shot implementation of large features and small products. |
+| Skill | What It Does |
+|-------|--------------|
+| [prd-builder](./prd-builder/) | Structured discovery interviews, market research, and PRD generation for new or existing products |
+| [spec-driven-dev](./spec-driven-dev/) | 4-phase protocol (Specify, Plan, Tasks, Implement) that produces LLM-optimized specs for one-shot builds |
+
+## Installation
+
+```bash
+git clone https://github.com/mrtblount/Spec-to-Ship.git
+
+# Copy both skills
+cp -R Spec-to-Ship/prd-builder ~/.claude/skills/prd-builder
+cp -R Spec-to-Ship/spec-driven-dev ~/.claude/skills/spec-driven-dev
+```
 
 ## Usage
 
-1. Clone this repo (or copy individual skill folders)
-2. Place skill folders in `~/.claude/skills/`
-3. Invoke skills by name in Claude Code (e.g., "use notion ai to create a database")
+### Starting from scratch
+Tell Claude what you want to build. PRD Builder activates for discovery, then Spec-Driven Dev takes over for technical planning and implementation.
+
+### Adding a major feature
+Describe the feature. Spec-Driven Dev detects the scope, specs it out, and builds it.
+
+### Quick triggers
+- "Build me an app that..."
+- "Spec this out"
+- "One-shot this"
+- `/prd-builder` or `/spec-driven-dev`
+
+## Related Repos
+
+- [Specialized Skills](https://github.com/mrtblount/Specialized-Skills) — Individual Claude Code skills for various workflows and integrations
+- [Skill Ecosystem](https://github.com/mrtblount/skill-ecosystem) — Framework, builder tools, and skill development infrastructure
 
 ## Links
 
-- [Skill Ecosystem](https://github.com/mrtblount/skill-ecosystem) — Framework, builder tools, and skill development infrastructure
 - [tonyblount.com](https://tonyblount.com) — Portfolio
 - [Four30.co](https://four30.co) — Consulting
 - [LinkedIn](https://www.linkedin.com/in/williamblount/)
